@@ -1,0 +1,10 @@
+mss>=9.0
+pillow>=10.0
+keyboard>=0.13
+# Windows built-in OCR (Windows.Media.Ocr). Pick one by Python version:
+winsdk>=1.0.0b10 ; python_version < "3.12"
+winrt-runtime>=3.0 ; python_version >= "3.12"
+winrt-Windows.Media.Ocr>=3.0 ; python_version >= "3.12"
+winrt-Windows.Globalization>=3.0 ; python_version >= "3.12"
+winrt-Windows.Graphics.Imaging>=3.0 ; python_version >= "3.12"
+winrt-Windows.Storage.Streams>=3.0 ; python_version >= "3.12"
