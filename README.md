@@ -1,43 +1,45 @@
 # nano-ocr
 
-Windows 极简 OCR 工具。截图 → 识别 → 结果自动进剪贴板。
+A minimal OCR tool for Windows. Screenshot → recognize → result is copied to your clipboard automatically.
 
-## 功能
+## Features
 
-- 一个截图按钮 + 一个结果文本框，没有多余的界面
-- 全局快捷键 `Ctrl + Alt + O`：随时框选屏幕任意区域进行识别
-- 结果自动复制到剪贴板（也可在文本框中右键复制）
-- 使用 Windows 系统自带 OCR 引擎（Windows.Media.Ocr），**无需安装 Tesseract 等外部程序**，离线可用
+- Minimal UI: one screenshot button + one result text box, nothing else
+- Global hotkey `Ctrl + Alt + O`: capture any screen region at any time
+- Result is automatically copied to the clipboard (right-click in the text box to copy again)
+- Optional "hide this window before capture" mode (checkbox)
+- Adjustable window width; window size and options are remembered across sessions
+- Uses the Windows built-in OCR engine (Windows.Media.Ocr) — **no external programs like Tesseract required**, works offline
 
-## 安装
+## Installation
 
-需要 Python 3.9+（3.11 及以下自动使用 winsdk，3.12+ 自动使用 winrt 包）：
+Requires Python 3.9+ (uses `winsdk` on Python ≤ 3.11, `winrt-*` packages on Python ≥ 3.12):
 
 ```powershell
 pip install -r requirements.txt
 ```
 
-## 运行
+## Usage
 
 ```powershell
 python nano_ocr.py
 ```
 
-- 点击按钮或按 `Ctrl + Alt + O` 开始截图
-- 拖拽框选要识别的区域，松开鼠标即开始识别；`Esc` 取消，`Enter` 确认
-- 识别结果显示在窗口中，并自动复制到剪贴板
+- Click the button or press `Ctrl + Alt + O` to start a capture
+- Drag to select a region; release to recognize, `Esc` to cancel, `Enter` to confirm
+- The result appears in the window and is copied to the clipboard
 
-## 注意
-
-- OCR 语言取决于系统已安装的语言包。若提示无可用引擎，请在
-  **设置 → 时间和语言 → 语言和区域** 中添加中文或英文语言包。
-
-## 打包成 exe
+## Build a standalone exe
 
 ```powershell
 pip install pyinstaller
-build_exe.bat        # 或: python -m PyInstaller --onefile --windowed --name nano-ocr nano_ocr.py
+build_exe.bat        # or: python -m PyInstaller --onefile --windowed --name nano-ocr nano_ocr.py
 ```
 
-产物在 `dist\nano-ocr.exe`（约 27 MB，单文件、绿色免安装，可拷贝到任意 Windows 机器运行）。
+The output is `dist\nano-ocr.exe` (~27 MB, single file, portable — copy it to any Windows machine).
 
+## Notes
+
+- The available OCR languages depend on the language packs installed on your system. If no engine is found, add a Chinese or English language pack under
+  **Settings → Time & Language → Language & Region**.
+- Only for Windows right now.
